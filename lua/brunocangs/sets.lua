@@ -29,3 +29,4 @@ vim.opt.updatetime = 50
 vim.o.clipboard = 'unnamedplus'
 vim.o.breakindent = true
 
+vim.o.cmdheight = 0

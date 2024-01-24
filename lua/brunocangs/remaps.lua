@@ -9,3 +9,11 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+
+vim.api.nvim_create_autocmd('filetype', {
+  pattern = 'netrw',
+  desc = 'Better mappings for netrw',
+  callback = function()
+    vim.keymap.set('n', '<leader>d', ':!rm -rf %/<C-r><C-a>', { buffer = true })
+  end
+})
