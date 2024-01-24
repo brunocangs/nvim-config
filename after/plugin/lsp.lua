@@ -108,6 +108,9 @@ mason_lspconfig.setup_handlers {
       on_attach = on_attach,
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
+      root_dir = function()
+        return vim.loop.cwd()
+      end
     }
   end,
 }
