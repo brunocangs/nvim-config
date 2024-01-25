@@ -30,3 +30,5 @@ vim.o.clipboard = 'unnamedplus'
 vim.o.breakindent = true
 
 vim.o.cmdheight = 0
+
+vim.opt.diffopt = "iblank,vertical,internal"

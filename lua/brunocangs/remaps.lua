@@ -10,6 +10,11 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+-- Navigate quickfix
+vim.keymap.set('n', '<C-U>', ':cnext<CR>')
+vim.keymap.set('n', '<C-D>', ':cprev<CR>')
+
+-- Netrw
 vim.api.nvim_create_autocmd('filetype', {
   pattern = 'netrw',
   desc = 'Better mappings for netrw',
