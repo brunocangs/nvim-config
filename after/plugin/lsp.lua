@@ -65,7 +65,7 @@ local servers = {
   tailwindcss = {},
   tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
-
+  solidity = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -103,15 +103,27 @@ mason_lspconfig.setup_handlers {
         vim.cmd.EslintFixAll()
       end)
     end
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-      root_dir = function()
-        return vim.loop.cwd()
-      end
-    }
+    if server_name == "solidity" then
+      local lspconfig = require('lspconfig')
+      lspconfig.solidity.setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        root_dir = lspconfig.util.root_pattern("hardhat.config.js", "hardhat.config.ts", "foundry.toml", "remappings.txt", "truffle.js", "truffle-config.js", "ape-config.yaml", ".git", "package.json"),
+        settings = {
+          -- example of global remapping
+          solidity = {
+            allowPaths = { vim.fs.dirname(vim.fs.find({".git"}, { upward = true })[1]) }
+          }
+        }
+      }
+    else
+      require('lspconfig')[server_name].setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = servers[server_name],
+        filetypes = (servers[server_name] or {}).filetypes,
+      }
+    end
   end,
 }
 
