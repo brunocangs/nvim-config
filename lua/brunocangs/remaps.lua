@@ -19,6 +19,6 @@ vim.api.nvim_create_autocmd('filetype', {
   pattern = 'netrw',
   desc = 'Better mappings for netrw',
   callback = function()
-    vim.keymap.set('n', '<leader>d', ':!rm -rf %:p:h/<C-r><C-a>', { buffer = true })
+    vim.keymap.set('n', '<leader>d', ':!rm -rf "%:p:h/<C-r><C-a>"', { buffer = true })
   end
 })
