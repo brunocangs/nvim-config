@@ -13,6 +13,8 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- Navigate quickfix
 vim.keymap.set('n', '<leader>qn', ':cnext<CR>')
 vim.keymap.set('n', '<leader>qp', ':cprev<CR>')
+vim.keymap.set('n', '<leader>qq', function() vim.cmd.cexpr("[]") vim.cmd.cclose()  end)
+
 
 -- Netrw
 vim.api.nvim_create_autocmd('filetype', {
