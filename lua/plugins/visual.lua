@@ -3,20 +3,25 @@ return {
 		-- Set lualine as statusline
 		'nvim-lualine/lualine.nvim',
 		-- See `:help lualine.txt`
-		opts = {
+		config = function ()
+			require('lualine').setup({
 			options = {
 				icons_enabled = false,
-				theme = 'onedark',
+				-- theme = 'onedark',
 				component_separators = '|',
 				section_separators = '',
 			},
 			sections = {
+				lualine_b = { "diagnostics" },
 				lualine_c = { {
 					'filename',
-					path = 1
-				} }
+					path = 4
+				} },
+				lualine_x = { "filetype" },
+				lualine_y = {},
 			}
-		},
+		})
+		end
 	},
 
 	{
