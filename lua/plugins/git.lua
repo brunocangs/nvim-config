@@ -11,7 +11,7 @@ return {
 				vim.cmd("ccl")
 			end)
 			vim.keymap.set('n', '<leader>gd', function()
-				vim.cmd('Gdiffsplit')
+				vim.cmd('Gdiffsplit!')
 			end)
 
 			vim.keymap.set('n', '<leader>mc', function()

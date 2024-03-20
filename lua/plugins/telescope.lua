@@ -15,5 +15,12 @@ return {
 				return vim.fn.executable 'make' == 1
 			end,
 		},
-	}
+	},
+	config = function ()
+		require("telescope").setup({
+			defaults = {
+				path_display = {"smart"}
+			}
+		})
+	end
 }
