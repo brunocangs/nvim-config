@@ -64,7 +64,7 @@ local servers = {
   tailwindcss = {},
   tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
-  solidity = {},
+  -- solidity = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -104,6 +104,7 @@ mason_lspconfig.setup_handlers {
     end
     if server_name == "solidity" then
       local lspconfig = require('lspconfig')
+      local git_root = vim.fs.dirname(vim.fs.find({".git"}, { upward = true })[1])
       lspconfig.solidity.setup {
         capabilities = capabilities,
         on_attach = on_attach,
@@ -111,7 +112,8 @@ mason_lspconfig.setup_handlers {
         settings = {
           -- example of global remapping
           solidity = {
-            allowPaths = { vim.fs.dirname(vim.fs.find({".git"}, { upward = true })[1]) }
+            allowPaths = { git_root },
+            remmapings = {["@openzeppelin/"] = git_root .. "/node_modules/@openzeppelin/"}
           }
         }
       }
@@ -154,7 +156,8 @@ cmp.setup {
     },
   },
   sources = {
-    { name = 'nvim_lsp' },
+    { name = 'buffer' },
+    { name = 'nvim_lsp' , keyword_length = 2, max_item_count = 30},
     { name = 'luasnip' },
   },
 }

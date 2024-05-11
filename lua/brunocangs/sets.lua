@@ -9,6 +9,7 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
+vim.opt.colorcolumn = "90"
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -29,6 +30,6 @@ vim.opt.updatetime = 50
 vim.o.clipboard = 'unnamedplus'
 vim.o.breakindent = true
 
-vim.o.cmdheight = 0
+vim.o.cmdheight = 1
 
 vim.opt.diffopt = "iblank,vertical,internal"

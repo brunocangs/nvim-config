@@ -19,7 +19,8 @@ return {
 	config = function ()
 		require("telescope").setup({
 			defaults = {
-				path_display = {"smart"}
+				-- wrap_results = true,
+				path_display = {shorten = 4}
 			}
 		})
 	end
