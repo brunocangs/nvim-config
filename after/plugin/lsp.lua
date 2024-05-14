@@ -112,12 +112,17 @@ mason_lspconfig.setup_handlers {
         settings = {
           -- example of global remapping
           solidity = {
-            allowPaths = { git_root },
-            remmapings = {["@openzeppelin/"] = git_root .. "/node_modules/@openzeppelin/"}
+            allowPaths = { vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1]) }
           }
         }
       }
     else
+      if server_name == "gopls" then
+        vim.keymap.set("n", "<leader>f", function()
+          vim.lsp.buf.format({ async = true })
+          vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })
+        end)
+      end
       require('lspconfig')[server_name].setup {
         capabilities = capabilities,
         on_attach = on_attach,

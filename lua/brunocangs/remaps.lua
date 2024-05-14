@@ -23,3 +23,11 @@ vim.api.nvim_create_autocmd('filetype', {
     vim.keymap.set('n', '<leader>d', ':!rm -rf "%:p:h/<C-r><C-a>"', { buffer = true })
   end
 })
+
+-- Tabs
+vim.keymap.set("n", "<C-t>n", ":tabnew<CR>")
+vim.keymap.set("n", "<C-t>o", ":tabonly<CR>")
+vim.keymap.set("n", "<C-t>d", ":tabnew %<CR>")
+vim.keymap.set("n", "<C-t>q", ":tabclose<CR>")
+vim.keymap.set("n", "<C-Tab>", ":tabnext<CR>")
+vim.keymap.set("n", "<C-S-Tab>", ":tabprev<CR>")
