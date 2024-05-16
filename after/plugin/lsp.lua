@@ -26,7 +26,6 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -104,7 +103,7 @@ mason_lspconfig.setup_handlers {
     end
     if server_name == "solidity" then
       local lspconfig = require('lspconfig')
-      local git_root = vim.fs.dirname(vim.fs.find({".git"}, { upward = true })[1])
+      local git_root = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1])
       lspconfig.solidity.setup {
         capabilities = capabilities,
         on_attach = on_attach,
@@ -137,7 +136,8 @@ mason_lspconfig.setup_handlers {
 -- See `:help cmp`
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
-require('luasnip.loaders.from_vscode').lazy_load()
+luasnip.config.set_config { history = false, updateevents = 'TextChanged,TextChangedI' }
+-- require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
 cmp.setup {
@@ -161,8 +161,10 @@ cmp.setup {
     },
   },
   sources = {
+    { name = 'nvim_lsp', max_item_count = 30 },
+    { name = 'path' },
     { name = 'buffer' },
-    { name = 'nvim_lsp' , keyword_length = 2, max_item_count = 30},
-    { name = 'luasnip' },
   },
 }
+
+cmp.setup.filetype({ "sql" }, { sources = { { name = "vim-dadbod-completion" }, { name = "buffer" } } })

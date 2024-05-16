@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -14,20 +13,30 @@ vim.keymap.set('n', '<leader>qn', ':cnext<CR>')
 vim.keymap.set('n', '<leader>qp', ':cprev<CR>')
 vim.keymap.set('n', '<leader>qq', function() vim.cmd.cexpr("[]") vim.cmd.cclose()  end)
 
-
--- Netrw
-vim.api.nvim_create_autocmd('filetype', {
-  pattern = 'netrw',
-  desc = 'Better mappings for netrw',
-  callback = function()
-    vim.keymap.set('n', '<leader>d', ':!rm -rf "%:p:h/<C-r><C-a>"', { buffer = true })
-  end
-})
-
 -- Tabs
-vim.keymap.set("n", "<C-t>n", ":tabnew<CR>")
-vim.keymap.set("n", "<C-t>o", ":tabonly<CR>")
-vim.keymap.set("n", "<C-t>d", ":tabnew %<CR>")
-vim.keymap.set("n", "<C-t>q", ":tabclose<CR>")
-vim.keymap.set("n", "<C-Tab>", ":tabnext<CR>")
-vim.keymap.set("n", "<C-S-Tab>", ":tabprev<CR>")
+vim.keymap.set("n", "<leader>wc", ":tabnew<CR>")
+vim.keymap.set("n", "<leader>wo", ":tabonly<CR>")
+vim.keymap.set("n", "<leader>wd", ":tabnew %<CR>")
+vim.keymap.set("n", "<leader>wq", ":tabclose<CR>")
+vim.keymap.set("n", "<leader>wn", ":tabnext<CR>")
+vim.keymap.set("n", "<leader>wp", ":tabprev<CR>")
+
+-- Splits movement
+vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
+vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
+vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
+vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
+
+-- Terminal
+
+-- Easily hit escape in terminal mode.
+vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
+
+-- Open a terminal at the bottom of the screen with a fixed height.
+vim.keymap.set("n", "<leader>t", function()
+  vim.cmd.new()
+  vim.cmd.wincmd "J"
+  vim.api.nvim_win_set_height(0, 12)
+  vim.wo.winfixheight = true
+  vim.cmd.term()
+end)
