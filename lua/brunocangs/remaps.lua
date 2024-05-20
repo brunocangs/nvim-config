@@ -8,6 +8,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+vim.keymap.set("n", "<leader>dd", ":bd!<CR>")
+
 -- Navigate quickfix
 vim.keymap.set('n', '<leader>qn', ':cnext<CR>')
 vim.keymap.set('n', '<leader>qp', ':cprev<CR>')

@@ -3,6 +3,7 @@ return {
   {
     "kristijanhusak/vim-dadbod-completion",
     config = function()
+      vim.g.db_ui_use_nerd_fonts = true
       vim.keymap.set("n", "<leader>db", function()
         local winnr = -1
         for _, tab in pairs(vim.api.nvim_list_tabpages()) do
@@ -22,8 +23,7 @@ return {
       end)
     end
   },
-
-  "kristijanhusak/vim-dadbod-ui"
+  "kristijanhusak/vim-dadbod-ui",
 }
 
 
