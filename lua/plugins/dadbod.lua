@@ -18,7 +18,7 @@ return {
           vim.api.nvim_set_current_win(winnr)
         else
           vim.cmd("tabnew")
-          vim.cmd("DBUI")
+          vim.cmd("dbui")
         end
       end)
     end

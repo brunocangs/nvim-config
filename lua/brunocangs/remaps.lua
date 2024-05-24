@@ -8,6 +8,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+-- DB usefull commands
 vim.keymap.set("n", "<leader>dd", ":bd!<CR>")
 
 -- Navigate quickfix
@@ -31,14 +32,21 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
 
 -- Terminal
 
--- Easily hit escape in terminal mode.
-vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
+-- -- Easily hit escape in terminal mode.
+-- vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
+--
+-- -- Open a terminal at the bottom of the screen with a fixed height.
+-- vim.keymap.set("n", "<leader>t", function()
+--   vim.cmd.new()
+--   vim.cmd.wincmd "J"
+--   vim.api.nvim_win_set_height(0, 12)
+--   vim.wo.winfixheight = true
+--   vim.cmd.term()
+-- end)
 
--- Open a terminal at the bottom of the screen with a fixed height.
-vim.keymap.set("n", "<leader>t", function()
-  vim.cmd.new()
-  vim.cmd.wincmd "J"
-  vim.api.nvim_win_set_height(0, 12)
-  vim.wo.winfixheight = true
-  vim.cmd.term()
-end)
+
+-- Godtier sort json
+vim.keymap.set("v", "<leader>sj", ":'<,'>!python3 -m json.tool --sort-keys --no-ensure-ascii<CR>gv=")
+
+-- Paste without yank
+vim.keymap.set("x", "<leader>p", [["_dP]])

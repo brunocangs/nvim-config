@@ -1,6 +1,6 @@
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local on_attach = function(a, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -100,6 +100,8 @@ mason_lspconfig.setup_handlers {
       vim.keymap.set("n", "<leader>ef", function()
         vim.cmd.EslintFixAll()
       end)
+      print(require("custom/findReactLongText"))
+      vim.keymap.set("n", "<leader>st", require("custom/findReactLongText"))
     end
     if server_name == "solidity" then
       local lspconfig = require('lspconfig')
