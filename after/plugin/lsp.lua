@@ -31,9 +31,6 @@ local on_attach = function(a, bufnr)
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
   nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
@@ -100,7 +97,6 @@ mason_lspconfig.setup_handlers {
       vim.keymap.set("n", "<leader>ef", function()
         vim.cmd.EslintFixAll()
       end)
-      print(require("custom/findReactLongText"))
       vim.keymap.set("n", "<leader>st", require("custom/findReactLongText"))
     end
     if server_name == "solidity" then
