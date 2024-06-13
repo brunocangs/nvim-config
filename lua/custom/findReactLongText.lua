@@ -45,7 +45,7 @@ local function find_long_jsx_text(bufnr, opts)
   local stringPlaceholders = vim.treesitter.query.parse('tsx', [[
 (jsx_attribute
   (property_identifier) @property (#eq? @property "placeholder")
-  (_) @inside (#match? @inside "^\"") (#offset! @inside)
+  (_) @inside (#match? @inside "^[\{]{0,1}[\"`]") (#offset! @inside)
   )
 ]])
   for _, match, metadata in stringPlaceholders:iter_matches(root, bufnr) do

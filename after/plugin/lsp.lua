@@ -21,7 +21,7 @@ local on_attach = function(a, bufnr)
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap('<leader>dS', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
@@ -101,7 +101,7 @@ mason_lspconfig.setup_handlers {
     end
     if server_name == "solidity" then
       local lspconfig = require('lspconfig')
-      local git_root = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1])
+      local git_root = vim.fs.dirname(vim.fs.find({".git"}, { upward = true })[1])
       lspconfig.solidity.setup {
         capabilities = capabilities,
         on_attach = on_attach,
@@ -109,7 +109,8 @@ mason_lspconfig.setup_handlers {
         settings = {
           -- example of global remapping
           solidity = {
-            allowPaths = { vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1]) }
+            allowPaths = { git_root },
+            remmapings = {["@openzeppelin/"] = git_root .. "/node_modules/@openzeppelin/"}
           }
         }
       }
