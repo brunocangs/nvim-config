@@ -101,7 +101,7 @@ mason_lspconfig.setup_handlers {
     end
     if server_name == "solidity" then
       local lspconfig = require('lspconfig')
-      local git_root = vim.fs.dirname(vim.fs.find({".git"}, { upward = true })[1])
+      local git_root = vim.fs.dirname(vim.fs.find({ ".git" }, { upward = true })[1])
       lspconfig.solidity.setup {
         capabilities = capabilities,
         on_attach = on_attach,
@@ -110,7 +110,7 @@ mason_lspconfig.setup_handlers {
           -- example of global remapping
           solidity = {
             allowPaths = { git_root },
-            remmapings = {["@openzeppelin/"] = git_root .. "/node_modules/@openzeppelin/"}
+            remmapings = { ["@openzeppelin/"] = git_root .. "/node_modules/@openzeppelin/" }
           }
         }
       }

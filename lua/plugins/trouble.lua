@@ -6,14 +6,6 @@ return {
     open_no_results = true,
     modes = {
       lsp_document_symbols = { win = { position = "left" } },
-      diagnostics = {
-        preview = {
-          type = "split",
-          relative = "editor",
-          position = "left",
-          size = 0.4,
-        }
-      }
     }
   },
   cmd = "Trouble",
