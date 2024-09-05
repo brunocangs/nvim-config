@@ -87,6 +87,7 @@ mason_lspconfig.setup {
 mason_lspconfig.setup_handlers {
   function(server_name)
     if server_name == "tsserver" then
+      server_name = "ts_ls"
       vim.keymap.set("n", "<leader>o", function()
         vim.lsp.buf.execute_command({
           command = "_typescript.organizeImports",
