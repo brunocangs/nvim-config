@@ -70,18 +70,37 @@ local function find_long_jsx_text(bufnr, opts)
         results = lines_with_numbers,
         -- sorter = conf.generic_sorter(opts),
         entry_maker = function(entry)
-          return {
-            value = entry.text,
-            display = function(ent)
-              local display = utils.transform_path(opts, ent.filename)
-              return display
-            end,
-            ordinal = 1,
-            bufnr = entry.bufnr,
-            filename = entry.filename,
-            lnum = entry.range[3],
-            col = entry.range[1]
-          }
+          local newLinePos = string.find(entry.text, "^\n") or -1
+          -- Starts with newline
+          if newLinePos == 1 then
+            vim.print({text = entry.text})
+            local offset = string.find(entry.text, "%S")
+            return {
+              value = entry.text:gsub("^%s+", ""):gsub("%s+$", ""),
+              display = function(ent)
+                local display = utils.transform_path(opts, ent.filename)
+                return display
+              end,
+              ordinal = 1,
+              bufnr = entry.bufnr,
+              filename = entry.filename,
+              lnum = entry.range[1] + 2,
+              col = offset - 1
+            }
+          else
+            return {
+              value = entry.text:gsub("^%s+", ""):gsub("%s+$", ""),
+              display = function(ent)
+                local display = utils.transform_path(opts, ent.filename)
+                return display
+              end,
+              ordinal = 1,
+              bufnr = entry.bufnr,
+              filename = entry.filename,
+              lnum = entry.range[1] + 1,
+              col = entry.range[2] + 1
+            }
+          end
         end,
         sorter = conf.generic_sorter(opts)
         -- previewer = previewers.buffer_previewer(opts)
