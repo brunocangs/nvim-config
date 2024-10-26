@@ -58,7 +58,7 @@ local servers = {
   -- rust_analyzer = {},
   sqlls = {},
   tailwindcss = {},
-  tsserver = {},
+  ts_ls = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
   -- solidity = {},
   lua_ls = {
@@ -86,7 +86,7 @@ mason_lspconfig.setup {
 
 mason_lspconfig.setup_handlers {
   function(server_name)
-    if server_name == "tsserver" then
+    if server_name == "ts_ls" then
       server_name = "ts_ls"
       vim.keymap.set("n", "<leader>o", function()
         vim.lsp.buf.execute_command({

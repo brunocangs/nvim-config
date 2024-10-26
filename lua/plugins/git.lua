@@ -20,6 +20,7 @@ return {
 			vim.keymap.set('n', '<leader>gH', function() vim.cmd('Gclog --graph --oneline --all') end)
 			vim.keymap.set('n', '<leader>gu', function() vim.cmd('Git fetch --all') end, { desc = 'Fetch all remotes', noremap = true, silent = true })
 		end
-	},
-	'tpope/vim-sleuth'
+	}
+	-- ,
+	-- 'tpope/vim-sleuth'
 }
