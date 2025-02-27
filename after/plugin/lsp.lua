@@ -59,7 +59,9 @@ local servers = {
   sqlls = {},
   tailwindcss = {},
   ts_ls = {},
-  html = { filetypes = { 'html', 'twig', 'hbs' } },
+  html = {},
+  templ = {},
+  graphql = {},
   -- solidity = {},
   lua_ls = {
     Lua = {
